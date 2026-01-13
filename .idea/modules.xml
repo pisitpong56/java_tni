@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/JavaTNI.iml" filepath="$PROJECT_DIR$/.idea/JavaTNI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LabSheet0/LabSheet0.iml" filepath="$PROJECT_DIR$/LabSheet0/LabSheet0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LabSheet01/LabSheet01.iml" filepath="$PROJECT_DIR$/LabSheet01/LabSheet01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LabSheet02/LabSheet02.iml" filepath="$PROJECT_DIR$/LabSheet02/LabSheet02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LabSheet03/LabSheet03.iml" filepath="$PROJECT_DIR$/LabSheet03/LabSheet03.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LabSheet04/LabSheet04.iml" filepath="$PROJECT_DIR$/LabSheet04/LabSheet04.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LabSheet05/LabSheet05.iml" filepath="$PROJECT_DIR$/LabSheet05/LabSheet05.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LabSheet06/LabSheet06.iml" filepath="$PROJECT_DIR$/LabSheet06/LabSheet06.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LabSheet07/LabSheet07.iml" filepath="$PROJECT_DIR$/LabSheet07/LabSheet07.iml" />
+    </modules>
+  </component>
+</project>
