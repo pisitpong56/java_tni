@@ -1,14 +1,16 @@
-public class Brownie extends Bakery {
-    private int piece;
-    private String topping;
+public class Brownie extends Bakery{
+    private boolean isFudgy;
+    private final int piece;
 
     public Brownie(int piece, String flavor, double unitPrice) {
         super(flavor, unitPrice);
         this.piece = piece;
     }
 
-    public String addTopping(String topping) {
-        return this.topping = topping;
+    public void isFudgy() {
+        if (!isFudgy) {
+            this.isFudgy = true;
+        }
     }
 
     public boolean isPackingBox() {
@@ -36,15 +38,16 @@ public class Brownie extends Bakery {
 
     @Override
     public double calculateTotalPrice() {
-        if (this.topping == null) {
-            return (getUnitPrice() * this.piece);
+        if (isFudgy) {
+            return (getUnitPrice() * this.piece) + getPackingCost() + (getBagNumber() * 0.5) + 20;
+        } else {
+            return (getUnitPrice() * this.piece) + getPackingCost() + (getBagNumber() * 0.5);
         }
-        return (getUnitPrice() * this.piece) + 20;
     }
 
     public String toString() {
         return super.toString() +
-                "\nBrownie (" + getFlavor() + ") with" +
+                "\nBrownie (" + getFlavor() + ") with " +
                 (isPackingBox() ? getBagNumber() + " Box " : " " ) + getBagNumber() + " Bag" +
                 "\nTotal price of Brownie = " + calculateTotalPrice();
     }

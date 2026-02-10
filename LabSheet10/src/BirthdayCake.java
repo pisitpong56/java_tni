@@ -1,15 +1,11 @@
 public class BirthdayCake extends Bakery {
     private String message;
-    private double pound;
+    private final double pound;
 
     public BirthdayCake(String message, double pound, String flavor, double unitPrice) {
         super(flavor, unitPrice);
         this.message = message;
         this.pound = pound;
-    }
-
-    public String getMessage() {
-        return this.message;
     }
 
     public void changeMessage(String new_message) {

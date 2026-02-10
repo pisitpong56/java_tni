@@ -1,5 +1,5 @@
 public class CupCake extends Bakery {
-    private int piece;
+    private final int piece;
 
     public CupCake(int piece, String flavor, double unitPrice) {
         super(flavor, unitPrice);
@@ -36,8 +36,8 @@ public class CupCake extends Bakery {
 
     public String toString() {
         return super.toString() +
-                "\nCupCake (" + getFlavor() + ") with" +
+                "\nCupCake (" + getFlavor() + ") with " +
                 (isPackingBox() ? getBagNumber() + " Box " : " " ) + getBagNumber() + " Bag" +
-                "\nTotal price of CupCake = " + (getUnitPrice() * this.piece);
+                "\nTotal price of CupCake = " + calculateTotalPrice();
     }
 }

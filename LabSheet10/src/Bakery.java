@@ -1,15 +1,11 @@
 public class Bakery {
-    private String flavor;
-    private double unitPrice;
-    private int packingCost = 5;
+    private final String flavor;
+    private final double unitPrice;
+    private final int packingCost = 5;
 
     public Bakery(String flavor, double unitPrice) {
         this.flavor = flavor;
         this.unitPrice = unitPrice;
-    }
-
-    public Bakery() {
-        this("", 0.0);
     }
 
     public String getFlavor() {
