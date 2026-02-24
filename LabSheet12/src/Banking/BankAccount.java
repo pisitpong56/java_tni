@@ -1,32 +1,42 @@
 package Banking;
 
 public class BankAccount {
-    private final String account_Id;
-    private double account_Balance;
 
-    public BankAccount(String account_Id, double account_Balance) {
-        this.account_Id = account_Id;
-        this.account_Balance = account_Balance;
+    protected String accId;
+    protected double accBalance;
+
+    protected String filename = "src/Banking/users_account.txt";
+
+    public BankAccount(String accId, double accBalance) {
+        this.accId = accId;
+        this.accBalance = accBalance;
     }
 
-    public BankAccount(String account_Id) {
-        this.account_Id = account_Id;
-        account_Balance = 0;
+    public BankAccount(String accId) {
+        this(accId, 0);
     }
 
-    public String getAccount_Id() {
-        return account_Id;
+    public BankAccount() {
     }
 
-    public void setAccount_Balance(double account_Balance) {
-        this.account_Balance = account_Balance;
+    public String getAccId() {
+        return accId;
     }
 
-    public double getAccount_Balance() {
-        return account_Balance;
+    public void setAccBalance(double accBalance) {
+        this.accBalance = accBalance;
     }
 
+    public double getAccBalance() {
+        return accBalance;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    @Override
     public String toString() {
-        return account_Id + "," + account_Balance;
+        return accId + "," + accBalance;
     }
 }

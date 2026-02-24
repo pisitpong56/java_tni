@@ -1,11 +1,10 @@
 package Banking;
 
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class BankSystem2 {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 

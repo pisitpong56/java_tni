@@ -1,39 +1,105 @@
 package Banking;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class AccountTransaction extends BankAccount implements Transactionable{
-    public AccountTransaction(String account_Id) {
-        super(account_Id);
+public class AccountTransaction extends BankAccount implements Transactionable {
+
+    public AccountTransaction(String accId) {
+        super(accId);
+        loadBalance();
     }
 
-    public boolean hasAccountId() throws FileNotFoundException {
-        File filename = new File("src/Banking/users_account.txt");
-        Scanner scanner = new Scanner(filename);
+    private void loadBalance() {
 
-        if (scanner.hasNext()) {
-            String[] data = scanner.nextLine().split(",");
-            scanner.close();
-            return this.getAccount_Id().equals(data[0]);
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data[0].equals(accId)) {
+                    accBalance = Double.parseDouble(data[1]);
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        scanner.close();
+    }
+
+    public boolean hasAccountId() {
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data[0].equals(accId)) {
+                    return true;
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return false;
+    }
+
+    private void updateFile() {
+
+        List<String> lines = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+
+                if (data[0].equals(accId)) {
+                    lines.add(accId + "," + accBalance);
+                } else {
+                    lines.add(line);
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
+
+            for (String l : lines) {
+                bw.write(l);
+                bw.newLine();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void deposit(double amount) {
-        this.setAccount_Balance(amount);
+        accBalance += amount;
+        updateFile();
     }
 
     @Override
     public void withdraw(double amount) {
-        this.setAccount_Balance(this.getAccount_Balance() - amount);
+
+        if (amount <= accBalance) {
+            accBalance -= amount;
+            updateFile();
+        }
     }
 
     @Override
     public double checkBalance() {
-        return this.getAccount_Balance();
+        return accBalance;
     }
 }

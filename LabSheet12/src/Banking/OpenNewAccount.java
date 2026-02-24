@@ -1,37 +1,48 @@
 package Banking;
 
 import java.io.*;
-import java.util.Scanner;
 
-public class OpenNewAccount extends BankAccount{
-    public OpenNewAccount(String account_Id, double account_Balance) {
-        super(account_Id, account_Balance);
+public class OpenNewAccount extends BankAccount {
+
+    public OpenNewAccount(String accId, double accBalance) {
+        super(accId, accBalance);
     }
 
-    private boolean is_ExistingAccount() throws FileNotFoundException {
-        File filename = new File("src/Banking/users_account.txt");
-        Scanner scanner = new Scanner(filename);
+    public boolean isExistingAccount(String accountName) {
 
-        if (scanner.hasNext()) {
-            String[] data = scanner.nextLine().split(",");
-            scanner.close();
-            return this.getAccount_Id().equals(data[0]);
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data[0].equals(accountName)) {
+                    return true;
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        scanner.close();
+
         return false;
     }
 
-    public String recordAccount() throws IOException {
-        File filename = new File("src/Banking/users_account.txt");
-        Scanner scanner = new Scanner(filename);
-        PrintWriter writer = new PrintWriter(filename);
+    public String recordAccount() {
 
-        if (is_ExistingAccount()) {
-            scanner.close();
-            return "This account has been created";
-        } else {
-            writer.println(this);
-            return "Created account success";
+        if (isExistingAccount(accId)) {
+            return "This account has been created!!";
         }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename, true))) {
+
+            bw.write(super.toString());
+            bw.newLine();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "Created account success!!";
     }
 }

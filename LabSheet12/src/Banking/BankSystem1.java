@@ -1,6 +1,5 @@
 package Banking;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class BankSystem1 {
@@ -37,7 +36,7 @@ public class BankSystem1 {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         String account_bank = input_account_id();
         double initial_balance = input_initial_balance();
